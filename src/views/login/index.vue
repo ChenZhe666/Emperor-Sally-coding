@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <div class="left">欢迎光临</div>
+    <div class="left">欢迎光ss临</div>
     <div class="right"></div>
   </div>
 </template>
