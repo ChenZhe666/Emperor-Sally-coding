@@ -92,8 +92,8 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     loading.open()
-    const token = localStorage.getItem('token')
-    if (token) config.headers.Authorization = token
+    // const token = localStorage.getItem('token')
+    // if (token) config.headers.Authorization = token
     return config
   },
   (error) => {
