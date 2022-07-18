@@ -2,6 +2,8 @@
   <div class="login">
     <div class="left">欢迎光临</div>
     <div class="right">
+      <h1>欢迎回来</h1>
+      <p>———— 账号密码登录 ————</p>
       <div class="login-container">
         <el-form
           class="login-form"
@@ -10,11 +12,11 @@
           :rules="loginRules"
         >
           <el-form-item prop="username">
-            用户名:<el-input v-model="loginForm.username" />
+            <el-input v-model="loginForm.username" />
           </el-form-item>
 
           <el-form-item prop="password">
-            密码:<el-input v-model="loginForm.password" />
+            <el-input type="password" v-model="loginForm.password" />
           </el-form-item>
         </el-form>
 
@@ -27,7 +29,10 @@
 
 <script setup>
 import UserAPi from '../../api/user'
+import { useRouter } from 'vue-router'
+import { setItem } from '../../utils/storage.js'
 import { ref, reactive } from 'vue'
+const router = useRouter()
 const loginForm = ref({
   username: 'admin',
   password: 'admin'
@@ -45,16 +50,18 @@ const loginRules = ref({
     {
       required: true,
       trigger: 'blur',
-       message: '密码为必填项'
+      message: '密码为必填项'
     }
   ]
 })
 const handleLoginSubmit = () => {
   Login.value.validate(async (valid) => {
     if (valid) {
-      console.log(loginForm.value)
+      // console.log(loginForm.value)
       const res = await UserAPi.getlogin(loginForm.value)
-      console.log(res);
+      // console.log(res.data.data.token)
+      setItem('token', res.data.data.token)
+      router.push('/')
     } else {
       console.log('用户名或密码错误!!')
       return false
@@ -83,6 +90,30 @@ const handleLoginSubmit = () => {
   .right {
     flex: 34%;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    .el-input {
+      width: 50%;
+      height: 30px;
+      margin-left: 25%;
+      margin-top: 10px;
+    }
+    p {
+      margin-top: 10px;
+      color: #d2d5db;
+    }
+    .el-button {
+      width: 46%;
+      border-radius: 20px;
+      align-items: center;
+      flex: 1;
+      line-height: 32px;
+      position: relative;
+      font-size: var(--font-size);
+      min-width: 0;
+    }
   }
 }
 </style>

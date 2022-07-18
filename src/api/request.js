@@ -91,9 +91,11 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   (config) => {
+    // console.log(config)
     loading.open()
-    // const token = localStorage.getItem('token')
-    // if (token) config.headers.Authorization = token
+    const token = localStorage.getItem('token')
+    // console.log(token);
+    config.headers.token = token
     return config
   },
   (error) => {

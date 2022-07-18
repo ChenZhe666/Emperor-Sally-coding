@@ -6,6 +6,15 @@ const getlogin = (data) => {
     `/admin/login?username=${data.username}&password=${data.password}`
   )
 }
+
+const getinfo = () => {
+  return request.post(
+    '/admin/getinfo'
+  )
+}
+
+
 export default {
-  getlogin
+  getlogin,
+  getinfo
 }
