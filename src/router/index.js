@@ -7,6 +7,11 @@ export const publicRoutes = [
     component: () => import('../views/login')
   },
   {
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    component: () => import('../views/404.vue')
+  },
+  {
     path: '/',
     name: 'Layout',
     component: () => import('../Layout/index.vue'),

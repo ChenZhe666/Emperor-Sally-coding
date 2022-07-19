@@ -6,10 +6,27 @@
     <div class="right">
       <p class="icon">
         <el-icon class="one"><Fold /></el-icon>
-        <el-icon class="two"><Refresh /></el-icon>
+
+        <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="刷新"
+        placement="bottom"
+      >
+      <el-icon class="two" @click="go" ><Refresh /></el-icon>
+      </el-tooltip>
+        
       </p>
       <div class="admin">
-        <el-icon class="steor"><FullScreen /></el-icon>
+        <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="全屏"
+        placement="bottom"
+      >
+     <el-icon class="steor" @click="isScreenFull" ><FullScreen /></el-icon>
+      </el-tooltip>
+       
         <div class="navbar-right">
           <el-dropdown trigger="click" @command="handleCommand">
             <span class="el-dropdown-link">
@@ -37,6 +54,7 @@ import { getItem } from '@/utils/storage.js'
 import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import screenfull from "screenfull";
 import {
   Eleme,
   Fold,
@@ -45,6 +63,22 @@ import {
   ArrowDown
 } from '@element-plus/icons-vue'
 const store = useStore()
+
+  const isScreenFull=()=> {
+      // 需要注意的是 如果判断!screenfull.enabled 显示的是不支持全屏的话 是因为谷歌的版本问题  判断改为 !screenfull.isEnabled  就可以了
+
+      if (!screenfull.isEnabled) {
+        // 如果不支持进入全屏，发出不支持提示
+        this.$message({
+          message: "您的浏览器版本过低不支持全屏显示！",
+          type: "warning"
+        });
+        return false;
+      }
+      screenfull.toggle();
+    }
+
+const isFullscreen = ref(false)
 // import { useStore } from 'vuex';
 // import { useRouter, useRoute } from 'vue-router';
 const img = computed(() => {
@@ -69,6 +103,10 @@ const handleToHome = () => {
 const handleLogout = () => {
   getItem('token')
   router.push('/login')
+}
+
+const go = () =>{
+  router.go(0);
 }
 </script>
 
