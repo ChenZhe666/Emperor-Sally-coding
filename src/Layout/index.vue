@@ -31,7 +31,7 @@ import AppHeader from './Header'
 }
 .el-aside {
   width: 250px;
-  background-color: #545c64;
+  background-color: #fdfdfd;
 }
 .el-header {
   width: 100%;

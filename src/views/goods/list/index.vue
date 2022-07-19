@@ -1,6 +1,6 @@
 <template>
   <div class="">
-      <router-view/>
+    商品管理
   </div>
 </template>
 

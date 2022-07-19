@@ -9,7 +9,79 @@ export const publicRoutes = [
   {
     path: '/',
     name: 'Layout',
-    component: () => import('../Layout/index.vue')
+    component: () => import('../Layout/index.vue'),
+    children: [
+      {
+        path: '/goods/list',
+        name: '/goods/list',
+        component: () => import('../views/goods/list/index.vue')
+      },
+      {
+        path: '/category/list',
+        name: '/category/list',
+        component: () => import('../views/category/list/index.vue')
+      },
+      {
+        path: '/skus/list',
+        name: '/skus/list',
+        component: () => import('../views/skus/list/index.vue')
+      },
+      {
+        path: '/coupon/list',
+        name: '/coupon/list',
+        component: () => import('../views/coupon/list/index.vue')
+      },
+      {
+        path: '/user/list',
+        name: '/user/list',
+        component: () => import('../views/user/list/index.vue')
+      },
+      {
+        path: '/level/list',
+        name: '/level/list',
+        component: () => import('../views/level/list/index.vue')
+      },
+      {
+        path: '/order/list',
+        name: '/order/list',
+        component: () => import('../views/order/list/index.vue')
+      },
+      {
+        path: '/comment/list',
+        name: '/comment/list',
+        component: () => import('../views/comment/list/index.vue')
+      },
+      {
+        path: '/manager/list',
+        name: '/manager/list',
+        component: () => import('../views/manager/list/index.vue')
+      },
+      {
+        path: '/access/list',
+        name: '/access/list',
+        component: () => import('../views/access/list/index.vue')
+      },
+      {
+        path: '/role/list',
+        name: '/role/list',
+        component: () => import('../views/role/list/index.vue')
+      },
+      {
+        path: '/setting/base',
+        name: '/setting/base',
+        component: () => import('../views/setting/base/index.vue')
+      },
+      {
+        path: '/image/list',
+        name: '/image/list',
+        component: () => import('../views/image/list/index.vue')
+      },
+      {
+        path: '/notice/list',
+        name: '/notice/list',
+        component: () => import('../views/notice/list/index.vue')
+      }
+    ]
   }
 ]
 
