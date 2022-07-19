@@ -8,7 +8,6 @@
         <el-icon class="one"><Fold /></el-icon>
         <el-icon class="two"><Refresh /></el-icon>
       </p>
-
       <div class="admin">
         <el-icon class="steor"><FullScreen /></el-icon>
         <div class="navbar-right">
@@ -144,12 +143,12 @@ const handleLogout = () => {
     // vertical-align: -5px;
     flex-direction: row;
     align-items: center;
-
     .text {
       position: absolute;
       top: 15px;
       color: white;
       margin-top: -10px;
+      margin-left: 6px;
     }
   }
   .el-avatar {

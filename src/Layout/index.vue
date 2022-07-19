@@ -27,7 +27,7 @@ import AppHeader from './Header'
 
 <style lang="scss" scoped>
 .el-container {
-  height: 100vh;
+  height: 92.3vh;
 }
 .el-aside {
   width: 250px;
@@ -37,7 +37,6 @@ import AppHeader from './Header'
   width: 100%;
   background-color: #4639cc;
 }
-
 .el-main {
   background-color: #b8e19b;
 }
