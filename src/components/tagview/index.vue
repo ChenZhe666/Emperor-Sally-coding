@@ -1,13 +1,19 @@
 <template>
-  <div class=""></div>
+  <div class="">
+    <!-- <template v-for="(item, index) in store.state.taglist" :key="index" >
+ 
+  <el-tag class="ml-2" type="success">Tag 2</el-tag>
+</template> -->
+  </div>
 </template>
-<script>
-import { ref, reactive, toRefs } from 'vue'
+<script setup>
+import { computed } from 'vue'
 import { useStore } from 'vuex'
-import { useRouter, useRoute } from 'vue-router'
-export default {
-  
-}
+const store = useStore()
+const taglist = computed(() => {
+  return store.state.status
+})
+console.log(taglist)
 </script>
 
 <style lang="scss"></style>
