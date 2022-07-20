@@ -34,7 +34,5 @@ import AppHeader from './Header'
   width: 100%;
   background-color: #4639cc;
 }
-.el-main {
-  background-color: #b8e19b;
-}
+
 </style>

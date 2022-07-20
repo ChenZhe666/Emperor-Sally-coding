@@ -22,6 +22,11 @@ export const publicRoutes = [
         component: () => import('../views/goods/list/index.vue')
       },
       {
+        path: '/home',
+        name: '/home',
+        component: () => import('../views/home.vue')
+      },
+      {
         path: '/category/list',
         name: '/category/list',
         component: () => import('../views/category/list/index.vue')

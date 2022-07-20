@@ -1,7 +1,6 @@
 import request from "./request";
 
 const getlogin = (data) => {
-  console.log(data, 'data')
   return request.post(
     `/admin/login?username=${data.username}&password=${data.password}`
   )
@@ -13,8 +12,23 @@ const getinfo = () => {
   )
 }
 
+//支付订单
+const getstatis = () => {
+  return request.get(
+    '/admin/statistics1'
+  )
+}
+
+const getstatisti = () => {
+  return request.get(
+    'admin/statistics3?type=week'
+  )
+}
+
 
 export default {
   getlogin,
-  getinfo
+  getinfo,
+  getstatis,
+  getstatisti
 }
