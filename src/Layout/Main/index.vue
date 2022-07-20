@@ -1,6 +1,8 @@
 <template>
   <div class="">
-    <tagview class="tagview"></tagview>
+    <tagview class="tagview">
+      123456
+    </tagview>
       <router-view/>
   </div>
 </template>
@@ -21,8 +23,8 @@ console.log(taglists)
 <style lang="scss">
 .tagview{
   width: 100%;
-  height: 100px;
-  background-color: aqua;
+  height: 50px;
+  // background-color: aqua;
   margin: 0;
   padding: 0;
 }

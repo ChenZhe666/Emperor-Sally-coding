@@ -1,22 +1,211 @@
 <template>
-  <div class="">
-    asdasdas
-    
+  <div>
+    <el-row :gutter="20">
+      <el-col :span="6" v-for="item in listOne" :key="item.value">
+        <el-card class="box-card" shadow="hover">
+          <div class="card_header">
+            <span>{{ item.title }}</span>
+            <el-tag :type="item.unitColor">{{ item.unit }}</el-tag>
+          </div>
+          <h1>{{ item.value }}</h1>
+          <div class="card_btm">
+            <span>{{ item.subTitle }}</span>
+            <span>{{ item.subValue }}</span>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20" style="margin-top: 10px">
+      <el-col :span="3" v-for="item in cardData" :key="item.path">
+        <el-card
+          @click="$router.push(item.path)"
+          shadow="hover"
+          class="smallCard"
+        >
+          <div class="grid-content ep-bg-purple" />
+          <p>
+            <el-button
+              style="border: none; background: none; padding: 0; color: black"
+              :icon="item.icon"
+              size="small"
+            ></el-button>
+          </p>
+          <p>
+            <span>{{ item.title }}</span>
+          </p>
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20" style="margin-top: 10px">
+      <el-col :span="12">
+        <el-card shadow="hover">
+          <div class="card_header">
+            <span>订单统计</span>
+            <span>
+              <el-check-tag
+                :checked="chartType === 'month'"
+                @click="changeChartType('month')"
+                style="margin-right: 8px"
+                >近一个月</el-check-tag
+              >
+              <el-check-tag
+                :checked="chartType === 'week'"
+                @click="changeChartType('week')"
+                style="margin-right: 8px"
+                >近一周</el-check-tag
+              >
+              <el-check-tag
+                :checked="chartType === 'hour'"
+                @click="changeChartType('hour')"
+                style="margin-right: 8px"
+                >近24小时</el-check-tag
+              >
+            </span>
+          </div>
+          <div id="Main" style="width: 600px; height: 277px"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card
+          class="btmCard"
+          style="margin-bottom: 10px"
+          shadow="hover"
+          v-for="(val, key) in listTwo"
+          :key="key"
+        >
+          <div class="card_header">
+            <span>{{ key === 'goods' ? '店铺及商品提示' : '交易提示' }}</span>
+            <el-tag effect="plain" type="danger">{{
+              key === 'goods' ? '店铺及商品提示' : '交易提示'
+            }}</el-tag>
+          </div>
+          <span v-for="item in val" :key="item" class="spanbox">
+            <h2>{{ item.value }}</h2>
+            <div>{{ item.label }}</div>
+          </span>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
-<script>
-import { ref, reactive, toRefs } from 'vue'
-import { useStore } from 'vuex'
-import UserApi from '../api/user'
-import { useRouter, useRoute } from 'vue-router'
-UserApi.getstatis().then((res) => {
-  console.log(res)
-})
-UserApi.getstatisti().then((res) => {
-  console.log(res)
-})
+<script setup>
+import HOMEAPI from '@/api/user'
+import { ref } from 'vue'
+import { cardData } from './cardData'
+import * as echarts from 'echarts'
 
+const chartType = ref('week')
+const listOne = ref([])
+const listTwo = ref([])
+
+const getListTwo = async () => {
+  const res = await HOMEAPI.getstatistitwo()
+  // console.log(res);
+  listTwo.value = res.data.data
+}
+getListTwo()
+const getListOne = async () => {
+  const res = await HOMEAPI.getstatis()
+  // console.log(res)
+  listOne.value = res.data.data.panels
+  // console.log(listOne.value)
+}
+getListOne()
+const getChartData = async () => {
+  const res = await HOMEAPI.getstatisti(chartType.value)
+  // console.log(res);
+  const myChart = echarts.init(document.getElementById('Main'))
+  console.log(res)
+  myChart.setOption({
+    tooltip: {},
+    xAxis: {
+      data: res.data.data.x
+    },
+    yAxis: {
+      type: 'value',
+      data: res.data.data.y
+    },
+    series: [
+      {
+        name: '销量',
+        type: 'bar',
+        data: res.data.data.y
+      }
+    ]
+  })
+}
+getChartData()
+const changeChartType = (type) => {
+  chartType.value = type
+  getChartData()
+}
 </script>
+<style scoped lang="scss">
+.card_header {
+  height: 41px;
+  background-color: rgb(249, 250, 251);
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px;
+  align-items: center;
+}
 
-<style lang="scss"></style>
+.smallCard {
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+.card_btm {
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  color: rgb(107, 114, 128);
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: rgb(107, 114, 128);
+  margin: 15px;
+}
+
+p {
+  text-align: center;
+
+  line-height: 30px;
+  font-size: 20px;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+.btmCard {
+  .spanbox {
+    display: inline-block;
+    width: 110px;
+    height: 92px;
+    background-color: rgba(229, 231, 235, 0.3);
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+    padding-top: 20px;
+    color: rgb(107, 114, 128);
+
+    h2 {
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    div {
+      font-size: 14px;
+    }
+  }
+}
+</style>

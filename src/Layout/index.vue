@@ -5,10 +5,17 @@
       <el-container>
         <el-aside> <app-aside></app-aside></el-aside>
         <el-container>
-          <el-main> <app-main></app-main></el-main>
+          <el-main>
+             <app-main></app-main>
+              
+             </el-main>
         </el-container>
       </el-container>
     </el-container>
+
+
+
+    
   </div>
 </template>
 <script setup>

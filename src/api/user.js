@@ -19,9 +19,14 @@ const getstatis = () => {
   )
 }
 
-const getstatisti = () => {
+const getstatistitwo = () => {
   return request.get(
-    'admin/statistics3?type=week'
+    'admin/statistics2'
+  )
+}
+
+const getstatisti = (type) => {
+  return request({url: 'admin/statistics3?type='+ type,method: 'get'}
   )
 }
 
@@ -30,5 +35,6 @@ export default {
   getlogin,
   getinfo,
   getstatis,
-  getstatisti
+  getstatisti,
+  getstatistitwo
 }

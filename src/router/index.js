@@ -12,8 +12,9 @@ export const publicRoutes = [
     component: () => import('../views/404.vue')
   },
   {
-    path: '/',
+    path: '/home',
     name: 'Layout',
+    redirect: '/',
     component: () => import('../Layout/index.vue'),
     children: [
       {
@@ -22,8 +23,7 @@ export const publicRoutes = [
         component: () => import('../views/goods/list/index.vue')
       },
       {
-        path: '/home',
-        name: '/home',
+        path: '/',
         component: () => import('../views/home.vue')
       },
       {

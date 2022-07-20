@@ -22,7 +22,7 @@
           <span>{{ item.name }}</span>
         </template>
         <el-menu-item-group v-for="(ele, index) in item.child" :key="index">
-          <el-menu-item :index="ele.frontpath" @click="tag(ele)">
+          <el-menu-item :index="ele.frontpath" @click="tag(ele.name,ele.frontpath)">
             <el-button
               class="btn"
               style="border: none; background: none; padding: 0"
@@ -45,11 +45,10 @@ const status = computed(() => {
   return store.state.status
 })
 
-const tag = (ele) => {
-    // console.log(name);
-    // console.log(url);
-     console.log(ele);
-     store.commit('tagview',ele)
+const tag = (name,path) => {
+    const tags = {name,path}
+    //  console.log(ele);
+     store.commit('tagview',tags)
 }
 // localStorage.getItem('flag')
 console.log(status)

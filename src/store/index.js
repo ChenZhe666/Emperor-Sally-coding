@@ -4,7 +4,7 @@ export default createStore({
   state: {
     img: '',
     status: '',
-    taglist: getItem('tag') || []
+    taglist: []
   },
   mutations: {
     imgUrl(state, imgUrl) {
@@ -19,17 +19,17 @@ export default createStore({
       // console.log(ele)
 				let rel = true
 				state.taglist.map(item => {
-					if (item == ele.name) {
+					if (item.name === ele.name) {
 						rel = false
 						return
 					}
 				})
 				if(rel){
 					state.taglist.push(
-						ele.name
+						ele
 					)
 				}
-      setItem('tag', state.taglist)
+      // setItem('tag', state.taglist)
       console.log(state.taglist)
     }
   },
