@@ -4,7 +4,7 @@ export default createStore({
   state: {
     img: '',
     status: '',
-    taglist: []
+    taglist: getItem('tag') || []
   },
   mutations: {
     imgUrl(state, imgUrl) {
@@ -13,7 +13,7 @@ export default createStore({
     add(state, status) {
       state.status = status
       // localStorage.setItem('flag', state.status)
-      console.log(status)
+      // console.log(status)
     },
     tagview(state, ele) {
       // console.log(ele)
@@ -29,7 +29,7 @@ export default createStore({
 						ele
 					)
 				}
-      // setItem('tag', state.taglist)
+      setItem('tag', state.taglist)
       console.log(state.taglist)
     }
   },

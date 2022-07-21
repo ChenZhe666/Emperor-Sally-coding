@@ -30,11 +30,27 @@ const getstatisti = (type) => {
   )
 }
 
+const getcategory = () => {
+  return request.get(
+    'admin/category'
+  )
+}
+
+const getcategorylist = (data) => {
+  return request.get(
+    'admin/app_category_item/list?category_id=' + data
+  )
+}
+
+
+
 
 export default {
   getlogin,
   getinfo,
   getstatis,
   getstatisti,
-  getstatistitwo
+  getstatistitwo,
+  getcategory,
+  getcategorylist
 }

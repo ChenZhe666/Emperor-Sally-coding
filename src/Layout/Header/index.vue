@@ -65,7 +65,7 @@ const status = ref(true)
 const add = () => {
   store.commit('add', status)
   status.value =! status.value
-  console.log(status.value);
+  // console.log(status.value);
 }
 const isScreenFull = () => {
   // 需要注意的是 如果判断!screenfull.enabled 显示的是不支持全屏的话 是因为谷歌的版本问题  判断改为 !screenfull.isEnabled  就可以了
@@ -86,7 +86,7 @@ const isScreenFull = () => {
 const img = computed(() => {
   return store.state.img
 })
-console.log(img)
+// console.log(img)
 const router = useRouter()
 const handleCommand = (command) => {
   switch (command) {

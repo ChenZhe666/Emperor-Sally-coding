@@ -1,7 +1,6 @@
 <template>
   <div class="">
     <tagview class="tagview">
-      123456
     </tagview>
       <router-view/>
   </div>
@@ -15,7 +14,7 @@ const store = useStore()
 const taglists = computed(() => {
   return store.state.taglist
 })
-console.log(taglists)
+// console.log(taglists)
 //  import { useRouter, useRoute } from 'vue-router';
 
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <el-menu
-      :style="{ width: status == true ? '64px' : '200px' }"
+      :width=" status ? '64px': '200px' "
       :collapse="status"
       collapse-transition
       active-text-color="#559eff"
@@ -14,11 +14,11 @@
       <el-sub-menu :index="item.id" v-for="(item, index) in list" :key="index">
         <template #title>
           <el-button
-            class="btn"
-            style="border: none; background: none; padding: 0; color: #303133"
-            :icon="item.icon"
-            size="small"
-          />
+              class="btn"
+              style="border: none; background: none; padding: 0"
+              :icon="item.icon"
+              size="small"
+            />
           <span>{{ item.name }}</span>
         </template>
         <el-menu-item-group v-for="(ele, index) in item.child" :key="index">
@@ -51,17 +51,17 @@ const tag = (name,path) => {
      store.commit('tagview',tags)
 }
 // localStorage.getItem('flag')
-console.log(status)
+// console.log(status)
 
 const imgUrl = ref()
 const list = ref()
 UserApi.getinfo().then((res) => {
-  console.log(res)
+  // console.log(res)
   list.value = res.data.data.menus
-  console.log(list)
+  // console.log(list)
   imgUrl.value = res.data.data.avatar
   store.commit('imgUrl', imgUrl.value)
-  console.log(imgUrl)
+  // console.log(imgUrl)
 })
 </script>
 

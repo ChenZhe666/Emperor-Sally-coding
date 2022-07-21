@@ -108,7 +108,7 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response) => {
-    console.log(response)
+    // console.log(response)
     // 关闭loading加载
     loading.close()
     return response

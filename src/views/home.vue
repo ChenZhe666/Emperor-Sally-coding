@@ -116,7 +116,7 @@ const getChartData = async () => {
   const res = await HOMEAPI.getstatisti(chartType.value)
   // console.log(res);
   const myChart = echarts.init(document.getElementById('Main'))
-  console.log(res)
+  // console.log(res)
   myChart.setOption({
     tooltip: {},
     xAxis: {
