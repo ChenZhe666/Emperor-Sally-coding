@@ -12,7 +12,7 @@
             active-color="#13ce66"
             inactive-color="#ff4949"
           ></el-switch>
-          <el-button type="primary">修改</el-button>
+          <el-button type="primary">修改11</el-button>
           <el-button type="primary">删除</el-button>
         </template>
       </el-table-column>
